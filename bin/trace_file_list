@@ -1,2 +1,9 @@
-1
-../sst-unit-test/traces/cachesize_1/trace.txt
+8
+/home/yunjiez/eecs570/macsim/sst-unit-test/traces/spec2017_x86/bwaves-r/bwaves-r.1.txt
+/home/yunjiez/eecs570/macsim/sst-unit-test/traces/spec2017_x86/bwaves-r/bwaves-r.2.txt
+/home/yunjiez/eecs570/macsim/sst-unit-test/traces/spec2017_x86/bwaves-r/bwaves-r.3.txt
+/home/yunjiez/eecs570/macsim/sst-unit-test/traces/spec2017_x86/bwaves-r/bwaves-r.4.txt
+/home/yunjiez/eecs570/gpuocelot/tests/rodinia/tests/hotspot/trace/_Z14calculate_tempiPfS_S_iiiiffffff_0/Trace.txt
+/home/yunjiez/eecs570/gpuocelot/tests/rodinia/tests/hotspot/trace/_Z14calculate_tempiPfS_S_iiiiffffff_1/Trace.txt
+/home/yunjiez/eecs570/gpuocelot/tests/rodinia/tests/hotspot/trace/_Z14calculate_tempiPfS_S_iiiiffffff_2/Trace.txt
+/home/yunjiez/eecs570/gpuocelot/tests/rodinia/tests/hotspot/trace/_Z14calculate_tempiPfS_S_iiiiffffff_3/Trace.txt

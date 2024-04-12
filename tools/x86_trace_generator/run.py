@@ -10,7 +10,7 @@ import datetime
 """
 User-specific variables
 """
-pin = '/home/jaekyu/software/pin-2.12-56759-gcc.4.4.7-linux/pin'
+pin = '/home/yunjiez/eecs570/pin-3.13-98189-g60a6ef199-gcc-linux/pin'
 tracegen = os.getcwd() + '/obj-intel64/trace_generator.so'
 
 
@@ -52,7 +52,7 @@ def process_options(args):
 
 def pinpoint_tracegen(args):
   # Trace Generator Path Setting
-  pin_dir        = '/home/jaekyu/software/pin-2.12-56759-gcc.4.4.7-linux' ### FIXME
+  pin_dir        = '/home/yunjiez/eecs570/pin-3.13-98189-g60a6ef199-gcc-linux' ### FIXME
   pin_home       = '%s/source/tools' % pin_dir
   pin_exe        = '%s/pin' % pin_dir
   isimpoint_path = '%s/PinPoints/obj-intel64/isimpoint.so' % pin_home

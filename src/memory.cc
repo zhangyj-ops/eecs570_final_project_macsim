@@ -36,6 +36,8 @@ POSSIBILITY OF SUCH DAMAGE.
 
 #include <iostream>
 #include <cmath>
+#include <stdlib.h>
+#include <time.h>
 
 #include "assert_macros.h"
 #include "cache.h"
@@ -588,9 +590,26 @@ int dcu_c::access(uop_c* uop) {
     }
 
     // FIXME (jaekyu, 10-26-2011)
-    if (m_id == *m_simBase->m_knobs->KNOB_HETERO_GPU_CORE_DISABLE) {
-      uop->m_bypass_llc = true;
-    }
+    // if (m_id == *m_simBase->m_knobs->KNOB_HETERO_GPU_CORE_DISABLE) {
+
+    // Initialize random number generator
+    // srand(time(NULL));
+    // int randomNumber = rand() % 100;
+    
+    // Check if the number is odd or even and set x accordingly
+    // int x = (randomNumber % 2) ? 1 : 0;
+    // uop->m_bypass_llc = false;
+    // uop->m_bypass_llc = (m_acc_sim != 1) ? true : false;
+      // printf("I'm executed!\n");
+    // }
+
+    bool bypass_cpu = false;
+    bool bypass_gpu = false;
+    
+    long long int expire_time = m_cache->find_average_last_access_time()/3;
+    // long long int expire_time = m_cache->estimate_expire_time_by_CYCLE(4);
+
+    uop->m_bypass_llc = m_cache->decide_llc_bypassing(req_addr, m_acc_sim, expire_time, bypass_cpu, bypass_gpu);
 
     if (m_id == *m_simBase->m_knobs->KNOB_HETERO_GPU_CORE_DISABLE + 1) {
       uop->m_skip_llc = true;

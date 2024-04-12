@@ -502,3 +502,57 @@ void cache_c::print_info(int id) {
          << " gpu: " << m_num_gpu_line << "\n";
   }
 }
+
+bool cache_c::decide_llc_bypassing(Addr addr, bool is_gpu_req, long long int expire_time, bool bypass_cpu, bool bypass_gpu){
+  Addr tag;
+  int set;
+  find_tag_and_set(addr, &tag, &set);
+  Counter last_access_time = find_min_lru(set);
+  // printf("CYCLE: %lld ; difference: %lld; expire time: %lld\n", CYCLE, CYCLE - last_access_time, expire_time);
+  // if is gpu request and trying to bypass gpu, or if cpu and trying to bypass cpu
+  if ((is_gpu_req && bypass_gpu) || (!is_gpu_req && bypass_cpu)){
+    // bypass if trying to evict a recently used line
+    // if there's space don't bypass
+    if (last_access_time == CYCLE) {
+      return false;
+    }
+    // if cycles passed is less than set number of cycles to "expire", bypass and don't evict
+    else if ( (CYCLE - last_access_time) < expire_time){
+      return true;
+    }
+    else{
+      return false;
+    }
+  }
+  else{
+    return false;
+  }
+}
+
+//method 1: get actual average access time diff
+// slow and not feasable to implement, just for getting an idea of how the workflow behavies
+long long int cache_c::find_average_last_access_time(){
+  long long int total_access_diff = 0; //worried about integer overflow?
+  for (int ii  = 0; ii < m_num_sets; ++ii){
+    for (int jj  = 0; jj < m_assoc; ++jj){
+      total_access_diff += CYCLE - m_set[ii]->m_entry[jj].m_last_access_time;
+    }
+  }
+  return total_access_diff/(m_num_sets*m_assoc);
+}
+
+//method 2: get estimate of average
+
+//method 3: use current CYCLE to estimate; expire_time is completely linear
+long long int cache_c::estimate_expire_time_by_CYCLE(int warm_up_factor){
+  int cache_size = m_num_sets*m_assoc;
+  // if cache is most likely not full, don't bypass (setting expire_time to CYCLE will make sure no bypass)
+  if (CYCLE < cache_size*warm_up_factor){ //*4 is arbitrary, might use warm_up_factor as input?
+    return CYCLE;
+  }
+  // goal is so expire time grows as CYCLE grows
+  // might use different function
+  else{
+    return CYCLE/cache_size;
+  }
+}

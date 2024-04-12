@@ -296,6 +296,13 @@ public:
    */
   void print_info(int id);
 
+  // static expire time; NEW idea: dynamic expire time
+  bool decide_llc_bypassing(Addr addr, bool is_gpu_req, long long int expire_time, bool bypass_cpu, bool bypass_gpu);
+
+  long long int find_average_last_access_time();
+
+  long long int estimate_expire_time_by_CYCLE(int warm_up_factor);
+
 public:
   Cache_Type m_cache_type; /**< cache type */
 

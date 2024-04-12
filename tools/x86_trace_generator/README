@@ -16,6 +16,18 @@ How to generate x86 traces
      [4] make 
      [5] pin -t obj-intel64/trace_generator.so - $BIN $ARGS 
 
+export PIN_ROOT=/home/yunjiez/eecs570/pin-3.13-98189-g60a6ef199-gcc-linux
+export PATH=$PIN_ROOT:$PATH
+export PIN_HOME=/home/yunjiez/eecs570/pin-3.13-98189-g60a6ef199-gcc-linux
+
+sudo docker run --privileged -i -t -v /home/yunjiez/eecs570/macsim:/macsim -v /home/yunjiez/eecs570/gpuocelot:/gpuocelot hparch/gpuocelot /bin/bash
+uid=1000(yunjiez) gid=1000(yunjiez) groups=1000(yunjiez),4(adm),20(dialout),24(cdrom),25(floppy),27(sudo),29(audio),30(dip),44(video),46(plugdev),117(netdev)
+
+addgroup --gid 1000 hparch
+adduser --no-create-home --uid 1000 --gid 1000 yunjiez
+adduser yunjiez sudo
+su - yunjiez
+
 
 
 Note
