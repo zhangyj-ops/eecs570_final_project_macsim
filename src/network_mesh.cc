@@ -85,11 +85,29 @@ void network_mesh_c::init(int num_cpu, int num_gpu, int num_l3, int num_llc,
   m_num_llc = num_llc;
   m_num_mc = num_mc;
 
-  CREATE_ROUTER(m_num_cpu, CPU_ROUTER, MEM_L2, 0);
-  CREATE_ROUTER(m_num_l3, L3_ROUTER, MEM_L3, 0);
-  CREATE_ROUTER(m_num_llc, LLC_ROUTER, MEM_LLC, 0);
-  CREATE_ROUTER(m_num_mc, MC_ROUTER, MEM_MC, 0);
-  CREATE_ROUTER(m_num_gpu, GPU_ROUTER, MEM_L2, m_num_cpu);
+  CREATE_ROUTER(4, CPU_ROUTER, MEM_L2, 0); // cpu 0-3
+  CREATE_ROUTER(1, GPU_ROUTER, MEM_L2, 4); // gpu 4
+  CREATE_ROUTER(1, LLC_ROUTER, MEM_LLC, 0); // llc 5
+  CREATE_ROUTER(1, L3_ROUTER, MEM_L3, 0); // l3 6
+  CREATE_ROUTER(3, GPU_ROUTER, MEM_L2, 5); // gpu 7-9
+  CREATE_ROUTER(1, MC_ROUTER, MEM_MC, 0); // mc 10
+  CREATE_ROUTER(5, GPU_ROUTER, MEM_L2, 8); // gpu 11-15
+
+  // CREATE_ROUTER(m_num_cpu, CPU_ROUTER, MEM_L2, 0);
+  // CREATE_ROUTER(m_num_l3, L3_ROUTER, MEM_L3, 0);
+  // CREATE_ROUTER(m_num_llc, LLC_ROUTER, MEM_LLC, 0);
+  // CREATE_ROUTER(m_num_mc, MC_ROUTER, MEM_MC, 0);
+  // CREATE_ROUTER(m_num_gpu, GPU_ROUTER, MEM_L2, m_num_cpu);
+
+  // CREATE_ROUTER(1, CPU_ROUTER, MEM_L2, 0); // cpu 0
+  // CREATE_ROUTER(2, GPU_ROUTER, MEM_L2, 1); // gpu 1 gpu 2
+  // CREATE_ROUTER(1, CPU_ROUTER, MEM_L2, 3); // cpu 3
+  // CREATE_ROUTER(1, GPU_ROUTER, MEM_L2, 4); // gpu 4
+  // CREATE_ROUTER(1, LLC_ROUTER, MEM_LLC, 0); // llc 5
+  // CREATE_ROUTER(1, L3_ROUTER, MEM_L3, 0); // l3 6
+  // CREATE_ROUTER(3, GPU_ROUTER, MEM_L2, 5); // gpu 7 gpu 8 gpu 9
+  // CREATE_ROUTER(1, MC_ROUTER, MEM_MC, 0); // mc 10
+  // CREATE_ROUTER(1, GPU_ROUTER, MEM_L2, 4); // gpu 4
 
   int width = sqrt(m_num_router);
   if ((width * width) != m_num_router) {

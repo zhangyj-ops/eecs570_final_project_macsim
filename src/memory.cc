@@ -603,10 +603,10 @@ int dcu_c::access(uop_c* uop) {
       // printf("I'm executed!\n");
     // }
 
-    bool bypass_cpu = false;
-    bool bypass_gpu = false;
+    bool bypass_cpu = true;
+    bool bypass_gpu = true;
     
-    long long int expire_time = m_cache->find_average_last_access_time()/3;
+    long long int expire_time = m_cache->find_average_last_access_time()/10;
     // long long int expire_time = m_cache->estimate_expire_time_by_CYCLE(4);
 
     uop->m_bypass_llc = m_cache->decide_llc_bypassing(req_addr, m_acc_sim, expire_time, bypass_cpu, bypass_gpu);

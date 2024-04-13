@@ -1,4 +1,4 @@
-9
+13
 /home/yunjiez/eecs570/macsim/sst-unit-test/traces/x86/mergesort.txt
 /home/yunjiez/eecs570/macsim/sst-unit-test/traces/x86/mergesort.txt
 /home/yunjiez/eecs570/macsim/sst-unit-test/traces/x86/mergesort.txt
@@ -8,3 +8,7 @@
 /home/yunjiez/eecs570/gpuocelot/tests/rodinia/tests/hotspot/trace/_Z14calculate_tempiPfS_S_iiiiffffff_2/Trace.txt
 /home/yunjiez/eecs570/gpuocelot/tests/rodinia/tests/hotspot/trace/_Z14calculate_tempiPfS_S_iiiiffffff_3/Trace.txt
 /home/yunjiez/eecs570/gpuocelot/tests/rodinia/tests/hotspot/trace/_Z14calculate_tempiPfS_S_iiiiffffff_4/Trace.txt
+/home/yunjiez/eecs570/gpuocelot/tests/rodinia/tests/hotspot/trace/_Z14calculate_tempiPfS_S_iiiiffffff_5/Trace.txt
+/home/yunjiez/eecs570/gpuocelot/tests/rodinia/tests/hotspot/trace/_Z14calculate_tempiPfS_S_iiiiffffff_6/Trace.txt
+/home/yunjiez/eecs570/gpuocelot/tests/rodinia/tests/hotspot/trace/_Z14calculate_tempiPfS_S_iiiiffffff_7/Trace.txt
+/home/yunjiez/eecs570/gpuocelot/tests/rodinia/tests/hotspot/trace/_Z14calculate_tempiPfS_S_iiiiffffff_8/Trace.txt
